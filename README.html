@@ -1,0 +1,1181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<body bgcolor="#ffffff">
+<a name="PageTop"></a>
+<DIV>
+<UL><LI><A href="#Section_1.">1.  Embedded Linux Development Kit</A><UL>
+<LI><A href="#Section_1.1.">1.1. ELDK Availability</A></LI>
+<LI><A href="#Section_1.2.">1.2. Supported Host Systems</A></LI>
+<LI><A href="#Section_1.3.">1.3. Supported Target Architectures</A></LI>
+<LI><A href="#Section_1.4.">1.4. Installation</A><UL>
+<LI><A href="#Section_1.4.1.">1.4.1. Product Packaging</A></LI>
+<LI><A href="#Section_1.4.2.">1.4.2. Downloading the ELDK</A></LI>
+<LI><A href="#Section_1.4.3.">1.4.3. Initial Installation</A></LI>
+<LI><A href="#Section_1.4.4.">1.4.4. Installation and Removal of Individual Packages</A></LI>
+<LI><A href="#Section_1.4.5.">1.4.5. Removal of the Entire Installation</A></LI>
+</UL></LI>
+<LI><A href="#Section_1.5.">1.5. Working with ELDK</A><UL>
+<LI><A href="#Section_1.5.1.">1.5.1. Switching Between Multiple Installations</A></LI>
+</UL></LI>
+<LI><A href="#Section_1.6.">1.6. Mounting Target Components via NFS</A></LI>
+<LI><A href="#Section_1.7.">1.7. Rebuilding ELDK Components</A><UL>
+<LI><A href="#Section_1.7.1.">1.7.1. ELDK Source Distribution</A></LI>
+<LI><A href="#Section_1.7.2.">1.7.2. Rebuilding Target Packages</A></LI>
+<LI><A href="#Section_1.7.3.">1.7.3. Rebuilding ELDT Packages</A></LI>
+</UL></LI>
+<LI><A href="#Section_1.8.">1.8. ELDK Packages</A><UL>
+<LI><A href="#Section_1.8.1.">1.8.1. List of ELDT Packages</A></LI>
+<LI><A href="#Section_1.8.2.">1.8.2. List of Target Packages</A></LI>
+</UL></LI>
+<LI><A href="#Section_1.9.">1.9. Rebuilding the ELDK from Scratch</A><UL>
+<LI><A href="#Section_1.9.1.">1.9.1. ELDK Build Process Overview</A></LI>
+<LI><A href="#Section_1.9.2.">1.9.2. Setting Up ELDK Build Environment</A></LI>
+<LI><A href="#Section_1.9.3.">1.9.3. build.sh Usage</A></LI>
+<LI><A href="#Section_1.9.4.">1.9.4. Format of the cpkgs.lst and  tpkgs.lst Files</A></LI>
+</UL></LI>
+</UL></LI>
+</UL></DIV>
+<p />
+<H1><A name="Section_1.">1.  Embedded Linux Development Kit</A></H1>
+<p />
+The Embedded Linux Development Kit (<strong>ELDK</strong>)
+includes the GNU cross development tools, such as the compilers,
+binutils, gdb, etc., and a number of pre-built target tools and
+libraries necessary to provide some functionality on the target
+system.
+<p />
+It is provided for free with full source code, including all patches,
+extensions, programs and scripts used to build the tools.
+<p />
+Packaging and installation is based on the RPM package manager.
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.1.">1.1.  <A href="#Section_1.">ELDK</a> Availability</A></H1>
+<p />
+The <A href="#Section_1.">ELDK</a> is available
+<ul>
+<li> on CD-ROM from <a href="mailto:office@denx.de">DENX Computer Systems</a>
+</li>
+<li> for download on the following servers:<br><br>
+           <table border="0" cellspacing="1" cellpadding="4">
+     <tr><th align="left" bgcolor="#99CCCC"> FTP </th><th align="left" bgcolor="#99CCCC"> HTTP </th></tr>
+     <tr><td> <a href="ftp://mirror.switch.ch/mirror/eldk/eldk/" target="_top">ftp://mirror.switch.ch/mirror/eldk/eldk/</a> </td><td> <a href="http://mirror.switch.ch/ftp/mirror/eldk/eldk/" target="_top">http://mirror.switch.ch/ftp/mirror/eldk/eldk/</a> </td></tr>
+     <tr><td> <a href="ftp://sunsite.utk.edu/pub/linux/eldk/" target="_top">ftp://sunsite.utk.edu/pub/linux/eldk/</a> </td><td> <a href="http://sunsite.utk.edu/ftp/pub/linux/eldk/" target="_top">http://sunsite.utk.edu/ftp/pub/linux/eldk/</a> </td></tr>
+     <tr><td> <a href="ftp://ftp.sunet.se/pub/Linux/distributions/eldk/" target="_top">ftp://ftp.sunet.se/pub/Linux/distributions/eldk/</a> </td><td> <a href="http://ftp.sunet.se/pub/Linux/distributions/eldk/" target="_top">http://ftp.sunet.se/pub/Linux/distributions/eldk/</a> </td></tr>
+     </table>
+</li>
+</ul>
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.2.">1.2.  Supported Host Systems</A></H1>
+<p />
+The <A href="#Section_1.">ELDK</a> can be installed onto and operate with the following
+operating systems:
+<p />
+<ul>
+<li> <a href="http://fedora.redhat.com" target="_top">Fedora Core</a> 1, 2, 3, 4                                       
+</li>
+<li> <a href="http://www.redhat.com" target="_top">Red Hat</a> Linux 7.3, 8.0, 9
+</li>
+<li> <a href="http://www.suse.com" target="_top">SuSE</a> Linux 8.x, 9.0, 9.1, 9.2, 9.3
+</li>
+<li> <a href="http://www.debian.org" target="_top">Debian</a> 3.0 (Woody) and testing (Sarge) <!-- (<a href="/wiki/Main/DetlevZundel">DetlevZundel</a>, Matt Porter) -->
+</li>
+<li> <a href="http://www.ubuntu-linux.org" target="_top">Ubuntu</a> 4.10, 5.04
+</li>
+<li> <a href="http://www.freebsd.org" target="_top">FreeBSD</a> 5.0 <!-- (Gary Jennejohn) -->
+</li>
+</ul>
+<p />
+Users also reported successful installation and use of the <A href="#Section_1.">ELDK</a> on
+the following host systems:
+<p />
+<ul>
+<li> <a href="http://www.suse.com" target="_top">Suse</a> Linux 7.2, 7.3 <!-- (Robert Enzinger, Siemens; Steven Scholz, IMC Berlin) -->
+</li>
+<li> <a href="http://www.mandrakesoft.com" target="_top">Mandrake</a> 8.2 <!-- (Brian Padalino, Perigee) -->
+</li>
+<li> <a href="http://www.slackware.com" target="_top">Slackware</a> 8.1beta2 <!-- (Paul Ruhland, 03 Jun 2002 17:50:44 EDT) -->
+</li>
+<li> <a href="http://www.gentoo.org" target="_top">Gentoo</a> Linux 1.4_rc2 <!-- wd --><note>
+</li>
+</ul>
+<p />
+<font color="#FF0000">Note:</font> It may be necessary, and is usually recommended, to install the
+latest available software updates on your host system. For example, on <a href="http://fedora.redhat.com" target="_top">Fedora Core</a> systems, you can use one of <code>yum</code>, <code>apt-get</code> or <code>up2date</code> to keep your systems current.
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.3.">1.3.  Supported Target Architectures</A></H1>
+<p />
+The <A href="#Section_1.">ELDK</a> for ARM systems supports processors complying with the ARM architecture version 2 to 5.                                                                           
+This includes ARM7, ARM9, XScale, AT91RM9200 and other ARM based systems.
+<p />
+There is also an <A href="#Section_1.">ELDK</a> for PowerPC and MIPS systems.
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.4.">1.4.  Installation</A></H1>
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.4.1.">1.4.1.  Product Packaging</A></H1>
+<p />
+Stable versions of the <A href="#Section_1.">ELDK</a> are distributed in the form of an ISO
+image, which can be either burned onto a CD or mounted directly,
+using the loopback Linux device driver (Linux host only).
+<p />
+For the PowerPC target,
+the <A href="#Section_1.">ELDK</a> distribution was split into two independent
+ISO images: one targeting the 4xx family of processors (AMCC),
+and another one for the 8xx, 6xx, 74xx and 85xx families (Freescale).
+This makes the ISO images fit on standard CDROM media.
+<p />
+<p />
+Development versions of the <A href="#Section_1.">ELDK</a> are available as directory trees so
+it is easy to update individual packages; instructions for download
+of these trees and creation of ISO images from it is described in section <A href="#Section_1.4.2.">1.4.2. Downloading the ELDK</A>. 
+<p />
+The <A href="#Section_1.">ELDK</a> contains an installation utility and a number of RPM
+packages, which are installed onto the hard disk of the cross
+development host by the installation procedure. The RPM packages can
+be logically divided into two parts:
+<p />
+<ul>
+<li> Embedded Linux Development Tools (ELDT)
+</li>
+<li> Target components
+</li>
+</ul>
+<p />
+The first part contains the cross development tools that are executed
+on the host system. Most notably, these are the GNU cross compiler,
+binutils, and <code>gdb</code>. For a full list of the provided ELDT packages,
+refer to section <A href="#Section_1.8.1.">1.8.1. List of ELDT Packages</A> below.
+<p />
+The target components are pre-built tools and libraries which are
+executed on the target system. The <A href="#Section_1.">ELDK</a> includes necessary target
+components to provide a minimal working NFS-based environment for the
+target system. For a list of the target packages included in the
+<A href="#Section_1.">ELDK</a>, refer to section <A href="#Section_1.8.2.">1.8.2. List of Target Packages</A> below.
+<p />
+The <A href="#Section_1.">ELDK</a> contains several independent sets of the target packages, one
+for each supported target <A href="#Section_1.3.">architecture</a>
+CPU family. Each set has been built using
+compiler code generation and optimization options specific to the
+respective target CPU family.
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.4.2.">1.4.2.  Downloading the <A href="#Section_1.">ELDK</a></A></H1>
+<p />
+You can either download the ready-to-burn ISO-images from one of the mirror sites
+(see <A href="#Section_1.1.">1.1. ELDK Availability</A>),
+or you can download the individual files of the <A href="#Section_1.">ELDK</a>
+from the development directory tree and either use these directly for installation
+or create an ISO image that can be burned on CD-ROM.
+<p />
+Change to a directory with sufficient free disk space; for the
+ARM version of the <A href="#Section_1.">ELDK</a> you need about 250 MB, or twice as much
+(500 MB) if you also want to create an ISO image in this directory.
+<p />
+To download the ISO image from the <em>arm-linux-x86/iso</em> directory of one of the
+mirror sites you can use standard tools like <code>wget</code> or <code>ncftpget</code>,
+for example:
+<pre>
+bash$ wget ftp://ftp.sunet.se/pub/Linux/distributions/eldk/4.0/arm-linux-x86/iso/arm-2006-01-16.iso
+</pre>
+<p />
+If you want to download the whole <A href="#Section_1.">ELDK</a> directory tree instead you can - for example -
+use the <command>ncftp</command> FTP client:
+<pre>
+bash$ ncftp ftp.sunet.se
+...
+ncftp / &gt; cd /pub/Linux/distributions/eldk/4.0
+ncftp /pub/Linux/distributions/eldk/4.0 &gt; bin
+ncftp /pub/Linux/distributions/eldk/4.0 &gt; get -R arm-linux-x86/distribution
+...
+ncftp /pub/Linux/distributions/eldk/4.0 &gt; bye
+
+</pre>
+<p />
+Depending on your combination of host and target architecture, you should download one of the
+following directories:
+<p />
+<ul>
+<li> <em>ppc-linux-x86/iso</em> &nbsp;&nbsp;&nbsp;resp. <br /> <em>ppc-linux-x86/distribution</em> for PowerPC targets and x86 Linux hosts,
+</li>
+<li> <em>mips-linux-x86/iso</em> &nbsp;&nbsp;&nbsp;resp. <br /> <em>mips-linux-x86/distribution</em> for MIPS targets and x86 Linux hosts, or
+</li>
+<li> <em>arm-linux-x86/iso</em> &nbsp;&nbsp;&nbsp;resp. <br /> <em>arm-linux-x86/distribution</em> for ARM targets and x86 Linux hosts.
+</li>
+</ul>
+<p />
+<font color="#FF0000">Note:</font> If you don't find the <code>ncftp</code> tool on your system you can download
+the <em>NcFTP</em> client from <a href="http://www.ncftp.com/download/" target="_top">http://www.ncftp.com/download/</a>
+<p />
+There are a few executable files (binaries and scripts) in the <A href="#Section_1.">ELDK</a>
+tree. Make sure they have the execute permissions set in your local
+copy:
+<p />
+<pre>
+bash$ for file in \
+&gt;       tools/bin/rpm \
+&gt;       tools/usr/lib/rpm/rpmd \
+&gt;       install \
+&gt;       ELDK_MAKEDEV \
+&gt;       ELDK_FIXOWNER
+&gt; do
+&gt; chmod +x arm-linux-x86/distribution/$file
+&gt; done
+</pre>
+<p />
+Now create an ISO image from the directory tree:
+<p />
+<pre>
+bash$ mkisofs \
+&gt; -A "ELDK-4.0 -- Target: ARM -- Host: x86 Linux" \
+&gt; -P "(C) `date "+%Y"` DENX Software Engineering,   www.denx.de" \
+&gt; -p "`id -nu`@`hostname` -- `date`" \
+&gt; -V eldk-arm-linux-x86 \
+&gt; -l -J -R -o eldk-arm-linux-x86.iso arm-linux-x86/distribution
+</pre>
+<p />
+This will create an ISO image
+<em>eldk-arm-linux-x86.iso</em> in your local directory
+that can be burned on CD or mounted using the loopback device and
+used for installation as described above. Of course you can use the
+local copy of the directory tree directly for the installation, too.
+<p />
+Please refer to section <A href="#Section_1.9.2.">1.9.2. Setting Up ELDK Build Environment</A>
+for instructions on obtaining the
+build environment needed to re-build the <A href="#Section_1.">ELDK</a> from scratch.
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.4.3.">1.4.3.  Initial Installation</A></H1>
+<p />
+The initial installation is performed using the <code>install</code> utility
+located in the root of the <A href="#Section_1.">ELDK</a> ISO image directory tree. The <code>install</code>
+utility has the following syntax:
+<p />
+<pre>
+$ ./install [-d &lt;dir&gt;] [&lt;cpu_family1&gt;] [&lt;cpu_family2&gt;] ...
+</pre>
+<p />
+ <table border="0" cellspacing="5" cellpadding="0">
+<tr><td valign="top" bgcolor="#FFFFFF"> <code>-d &lt;dir&gt;</code> </td><td valign="top" bgcolor="#FFFFFF"> Specifies the root directory of the <A href="#Section_1.">ELDK</a> being installed. If omitted, the <A href="#Section_1.">ELDK</a> goes into the current directory. </td></tr>
+<tr><td valign="top" bgcolor="#FFFFFF"> <code>&lt;cpu_family&gt;</code> </td><td valign="top" bgcolor="#FFFFFF"> Specifies the target CPU family the user desires to install. If one or more <code>&lt;cpu_family&gt;</code> parameters are specified, only the target components specific to the respective CPU families are installed onto the host. If omitted, the target components for all supported target <A href="#Section_1.3.">architecture</a> CPU families are installed. </td></tr>
+</table>
+<p />
+<font color="#FF0000">Note:</font> Make sure that the <code>"exec"</code> option to the <em>mount</em> command is in effect when mounting the <A href="#Section_1.">ELDK</a> ISO image. Otherwise the <code>install</code> program cannot be executed. On some distributions, it may be necessary to modify the /etc/fstab file, adding the "exec" mount option to the cdrom entry - it may also be the case that other existing mount options, such as "user" prevent a particular configuration from mounting the <A href="#Section_1.">ELDK</a> CD with appropriate "exec" permission. In such cases, consult your distribution documentation or mount the CD explicitly using a command such as "sudo mount -o exec /dev/cdrom /mnt/cdrom" (sudo allows regular users to run certain privileged commands but may not be configured - run the previous command as root without "sudo" in the case that "sudo" has not been setup for use on your particular GNU/Linux system).
+<p />
+You can install the <A href="#Section_1.">ELDK</a> to any empty directory you wish, the only
+requirement being that you have to have write and execute permissions
+on the directory. The installation process does not require
+superuser privileges.
+<p />
+Depending on the parameters the <code>install</code> utility is invoked with, it
+installs one or more sets of target components. The ELDT packages are
+installed in any case.
+<p />
+Refer to section <A href="#Section_1.5.">1.5. Working with ELDK</A>
+for a sample usage of the <A href="#Section_1.">ELDK</a>.
+<p />
+<font color="#FF0000">Note:</font> If you intend to use the installation as a root filesystem exported
+over NFS, then you now have to finish the configuration of the <A href="#Section_1.">ELDK</a>
+following the instructions in <A href="#Section_1.6.">1.6. Mounting Target Components via NFS</A>.
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.4.4.">1.4.4.  Installation and Removal of Individual Packages</A></H1>
+<p />
+The <A href="#Section_1.">ELDK</a> has an RPM-based structure. This means that on the ISO
+image, individual components of the <A href="#Section_1.">ELDK</a> are in the form of RPM
+packages, and after installation, the <A href="#Section_1.">ELDK</a> maintains its own database
+which contains information about installed packages. The RPM database
+is kept local to the specific <A href="#Section_1.">ELDK</a> installation, which allows you to
+have multiple independent <A href="#Section_1.">ELDK</a> installations on your host system.
+(That is, you can install several instances of <A href="#Section_1.">ELDK</a> under different
+directories and work with them independently). Also, this provides
+for easy installation and management of individual <A href="#Section_1.">ELDK</a> packages.
+<p />
+To list the installed <A href="#Section_1.">ELDK</a> RPM packages, use the following command:
+<p />
+<pre>
+bash$ ${CROSS_COMPILE}rpm -qa
+</pre>
+<p />
+To remove an <A href="#Section_1.">ELDK</a> package, use the following command:
+<p />
+<pre>
+bash$ ${CROSS_COMPILE}rpm -e &lt;package_name&gt;
+</pre>
+<p />
+To install a package, use the following command:
+<p />
+<pre>
+bash$ ${CROSS_COMPILE}rpm -i &lt;package_file_name&gt;
+</pre>
+<p />
+To update a package, use the following command:
+<p />
+<pre>
+bash$ ${CROSS_COMPILE}rpm -U &lt;package_file_name&gt;
+</pre>
+<p />
+For the above commands to work correctly, it is crucial that the
+correct <code>rpm</code> binary gets invoked. In case of
+multiple <A href="#Section_1.">ELDK</a> installations and RedHat-based host system, there may
+well be several <code>rpm</code> tools installed on the host
+system.
+<p />
+You must make sure, either by using an explicit path or by having set
+an appropriate <code>PATH</code> environment variable, that
+when you invoke <code>rpm</code> to install/remove components
+of a <A href="#Section_1.">ELDK</a> installation, it is the <A href="#Section_1.">ELDK</a>'s <code>rpm</code>
+utility that gets actually invoked. The <code>rpm</code>
+utility is located in the <code>bin</code> subdirectory
+relative to the <A href="#Section_1.">ELDK</a> root installation directory.
+<p />
+To avoid confusion with the host OS (RedHat) <code>rpm</code>
+utility, the <A href="#Section_1.">ELDK</a> creates symlinks to its <code>rpm</code>
+binary with the names such that it could be invoked using the
+<code>${CROSS_COMPILE}rpm</code> notation, for all supported
+<a href="#Table_CrossCompile">$CROSS_COMPILE</a> values.
+<p />
+<font color="#FF0000">Note:</font> The standard (host OS) <code>rpm</code> utility allows various
+macros and configuration parameters to specified in
+user-specific <em>~/.rpmrc</em> and <em>~/.rpmmacros</em> files. The <A href="#Section_1.">ELDK</a>
+rpm tool also has this capability, but the names
+of the user-specific configuration files
+are <em>~/.eldk_rpmrc</em> and <em>~/.eldk_rpmmacros</em>, respectively.
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.4.5.">1.4.5.  Removal of the Entire Installation</A></H1>
+<p />
+To remove the entire <A href="#Section_1.">ELDK</a> installation, use the following command
+while in the <A href="#Section_1.">ELDK</a> root directory:
+<p />
+<pre>
+bash$ rm -rf &lt;dir&gt;
+</pre>
+<p />
+where <code>&lt;dir&gt;</code> specifies the root directory of the <A href="#Section_1.">ELDK</a> to be
+removed.
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.5.">1.5.  Working with <A href="#Section_1.">ELDK</a></A></H1>
+<p />
+After the initial installation is complete, all you have to do to
+start working with the <A href="#Section_1.">ELDK</a> is to set and export the
+<code>CROSS_COMPILE</code> environment variable.
+Optionally, you may wish to add the <code>bin</code> and <code>usr/bin</code> directories of
+your <A href="#Section_1.">ELDK</a> installation to the value of your <code>PATH</code>
+environment variable. For instance, a sample <A href="#Section_1.">ELDK</a> installation and
+usage scenario looks as follows:
+<p />
+<ul>
+<li> Create a new directory where the <A href="#Section_1.">ELDK</a> is to be installed, say:
+     <pre>
+bash$ mkdir /opt/eldk
+</pre>
+</li>
+<li> Mount a CD or an ISO image with the distribution:
+     <pre>
+bash$ mount /dev/cdrom /mnt/cdrom
+</pre>
+</li>
+<li> Run the installation utility included on the distribution to
+     install into that specified directory:
+     <pre>
+bash$ /mnt/cdrom/install -d /opt/eldk
+</pre>
+</li>
+<li> After the installation utility completes, export the
+     <code>CROSS_COMPILE</code> variable:
+     <pre>
+bash$ export CROSS_COMPILE=arm-linux-
+</pre>
+   <font color="#FF0000">Note:</font> The trailing '-' character
+     in the <code>CROSS_COMPILE</code> variable value is optional
+     and has no effect on the cross tools behavior.
+</li>
+</ul>
+<p />
+<ul>
+<li> Add the directories <em>/opt/eldk/usr/bin</em> and <em>/opt/eldk/bin</em>
+     to <code>PATH</code>:
+     <pre>
+bash$ PATH=$PATH:/opt/eldk/usr/bin:/opt/eldk/bin
+</pre>
+</li>
+<li> Compile a file:
+     <pre>
+bash$ ${CROSS_COMPILE}gcc -o hello_world hello_world.c
+</pre>
+     <font color="#FF0000">Note:</font> You can also call the cross tools using the generic prefix <em>arm-linux-</em>
+     for example:
+     <pre>
+bash$ arm-linux-gcc -o hello_world hello_world.c
+</pre>
+</li>
+</ul>
+<p />
+<p />
+<ul>
+<li> or, equivalently:
+     <pre>
+bash /opt/eldk/usr/arm-linux/bin/gcc -o hello_world hello_world.c                                                                               
+</pre>
+</li>
+</ul>
+<p />
+<p />
+The value of the <code>CROSS_COMPILE</code> variable
+must correspond to the target CPU family you want the cross tools to
+work for. Refer to the table below for the supported
+<code>CROSS_COMPILE</code> variable values:
+<p />
+<A name="Table_CrossCompile">1.5.A Table of possible values for <code>$CROSS_COMPILE</code></A>
+<table border="1" cellspacing="1" cellpadding="0">
+<tr><td bgcolor="#FFFFCC"> <code>CROSS_COMPILE</code> Value </td><td bgcolor="#FFFFCC"> Predefined Compiler Flag </td><td bgcolor="#FFFFCC"> FPU present or not </td></tr>
+<tr><td bgcolor="#FFFFFF"> arm-linux- </td><td bgcolor="#FFFFFF"> -mcpu=arm9 </td><td bgcolor="#FFFFFF"> No </td></tr>
+</table>
+<p />
+<p />
+<p />
+<H2><A name="Section_1.5.1.">1.5.1. Switching Between Multiple Installations</A><A name="Section_ELDKMultipleInstallations"> </A>
+</H2>
+<p />
+No special actions are required from the user to switch between
+multiple <A href="#Section_1.">ELDK</a> installations on the same host system. Which <A href="#Section_1.">ELDK</a>
+installation is used is determined entirely by the filesystem
+location of the binary that is being invoked. This approach can be
+illustrated using the following example.
+<p />
+<p />
+Assume the directory
+<em>/work/denx_tools/usr/bin</em>, where the <code>arm-linux-gcc</code> 
+compiler binary has been installed,
+is a part of the <code>PATH</code> environment variable. The
+user types the command as follows:
+<p />
+<pre>
+$ arm-linux-gcc -c myfile.c
+</pre>
+<p />
+<p />
+To load the correct include files, find the correct libraries, spec
+files, etc., the compiler needs to know the <A href="#Section_1.">ELDK</a> root directory. The
+compiler determines this information by analyzing the shell command it
+was invoked with ( <code>arm-linux-gcc</code> 
+ - without
+specifying the explicit path in this example) and, if needed, the
+value of the <code>PATH</code> environment variable. Thus, the
+compiler knows that it has been executed from the
+<em>/work/denx_tools/usr/bin</em> directory.
+<p />
+Then, it knows that the compiler is installed in the <em>usr/bin</em>
+subdirectory of the root installation directory, so the <A href="#Section_1.">ELDK</a>, the
+compiler is a part of, has been installed in the subdirectories of the
+<em>/work/denx_tools</em> directory. This means
+that the target include files are in
+<em>/work/denx_tools/&lt;target_cpu_variant&gt;/usr/include</em>,
+and so on.
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.6.">1.6.  Mounting Target Components via NFS</A></H1>
+<p />
+The target components of the <A href="#Section_1.">ELDK</a> can be mounted via NFS as the root
+file system for your target machine. For instance, for an 8xx-based
+target, and assuming the <A href="#Section_1.">ELDK</a> has been installed into the
+<em>/opt/eldk</em> directory, you can
+use the following directory as the NFS-based root file system:
+<p />
+<pre>
+/opt/eldk/arm
+</pre>
+<p />
+<p />
+<font color="#FF0000">Note:</font> Before the NFS-mounted root file system can work, you must create the
+necessary device nodes in the
+<em>&lt;ELDK_root&gt;/&lt;target_cpu_variant&gt;/dev</em>
+directory. This process requires superuser privileges and thus
+cannot be done by the installation procedure (which typically runs as non-root). To facilitate
+creation of the device nodes, the <A href="#Section_1.">ELDK</a> provides a script named
+<code>ELDK_MAKEDEV</code>, which is located in the root
+of the <A href="#Section_1.">ELDK</a> distribution ISO image. To create the device nodes, you
+should invoke this script while in the appropriate <em>dev</em> subdirectory
+where the device nodes are to be created. For instance, to create
+the device nodes for a ARM 
+based system, use the following commands:
+<p />
+<pre>
+bash# cd /opt/eldk/arm/dev
+bash# /mnt/cdrom/ELDK_MAKEDEV
+</pre>
+<p />
+<p />
+<font color="#FF0000">Note:</font> Some of the target utilities included in the <A href="#Section_1.">ELDK</a>, such as
+<code>mount</code> and <code>su</code>, have the SUID bit
+set. This means that when run, they will have privileges of the file
+owner of these utilities. That is, normally, they will have the
+privileges of the user who installed the <A href="#Section_1.">ELDK</a> on the host system.
+However, for these utilities to work properly,
+they <b>must</b> have superuser privileges. This means that if the <A href="#Section_1.">ELDK</a> was
+not installed by the superuser, the file owner of the target
+<A href="#Section_1.">ELDK</a> utilities that have the SUID bit set must be changed to
+<code>root</code> before a target component may be mounted as
+the root file system. The <A href="#Section_1.">ELDK</a> distribution image contains an
+<code>ELDK_FIXOWNER</code> script, which you can use to change
+file owners of all the appropriate files of the <A href="#Section_1.">ELDK</a> installation to
+root. You should invoke this script while in the root <A href="#Section_1.">ELDK</a>
+installation directory. Please note that you must have superuser
+privileges to run this script. For instance, if you have installed
+the <A href="#Section_1.">ELDK</a> in the <em>/opt/eldk</em>
+directory, you can use the following commands:
+<p />
+<p />
+<p />
+<pre>
+# cd /opt/eldk
+# /mnt/cdrom/ELDK_FIXOWNER
+</pre>
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.7.">1.7.  Rebuilding <A href="#Section_1.">ELDK</a> Components</A></H1>
+<p />
+<H2><A name="Section_1.7.1.">1.7.1. <A href="#Section_1.">ELDK</a> Source Distribution</A><A name="Section_ELDKSources"> </A>
+</H2>
+<p />
+The <A href="#Section_1.">ELDK</a> is distributed with the full sources of all the components,
+so you may rebuild any <A href="#Section_1.">ELDK</a> package. The sources are provided in the
+form of SRPM packages, distributed as a separate ISO image.
+<p />
+To rebuild a target or ELDT package, you must first install the
+appropriate source RPM package from the ISO image into the <A href="#Section_1.">ELDK</a>
+environment. This can be done using the following command:
+<p />
+<pre>
+$ ${CROSS_COMPILE}rpm -i /mnt/cdrom/SRPMS/&lt;source_rpm_file_name&gt;.src.rpm
+</pre>
+<p />
+After an <A href="#Section_1.">ELDK</a> source RPM is installed using the above command, its
+spec file and sources can be found in the subdirectories of the
+<em>&lt;ELDK_root&gt;/usr/src/denx</em> subdirectory.
+<p />
+The sections that follow provide detailed instructions on rebuilding
+ELDT and target components of the <A href="#Section_1.">ELDK</a>.
+<p />
+<H2><A name="Section_1.7.2.">1.7.2. Rebuilding Target Packages</A><A name="Section_ELDKRebuildTargetRpm"> </A>
+</H2>
+<p />
+All the target packages can be rebuilt
+from the provided source RPM packages.
+At first you have to install the Source RPM itself:
+<p />
+<pre>
+bash$ ${CROSS_COMPILE}rpm -iv &lt;package_name&gt;.src.rpm
+</pre>
+<p />
+Then you can rebuild the binary target RPM using the following command
+from the <A href="#Section_1.">ELDK</a> environment:
+<p />
+<pre>
+bash$ ${CROSS_COMPILE}rpmbuild -ba &lt;package_name&gt;.spec
+</pre>
+<p />
+In order for the rebuilding process to work correctly, the following
+conditions must be true:
+<p />
+<ul>
+<li> The <a href="#Table_CrossCompile">$CROSS_COMPILE</a> environment variable
+     must be set as appropriate for the target CPU family.
+</li>
+</ul>
+<p />
+<ul>
+<li> The <em>&lt;ELDK_root&gt;/usr/arm-linux/bin</em>
+      directory must be in <code>PATH</code> before the
+     <em>/usr/bin</em> directory. This is to make sure that
+     the command <code>gcc</code> results in the fact that the
+     <A href="#Section_1.">ELDK</a> cross compiler is invoked, rather than the host
+     <code>gcc</code>.
+</li>
+</ul>
+<p />
+<H2><A name="Section_1.7.3.">1.7.3. Rebuilding ELDT Packages</A><A name="Section_ELDKRebuildToolRpm"> </A>
+</H2>
+<p />
+All the ELDT packages allow for rebuilding from the provided source
+RPM packages using the following command from the <A href="#Section_1.">ELDK</a> environment:
+<p />
+<pre>
+$ unset CROSS_COMPILE
+$ &lt;ELDK_root&gt;/usr/bin/rpmbuild -ba &lt;package_name.spec&gt;
+</pre>
+<p />
+In order for the rebuilding process to work correctly, make sure all of the following is
+true:
+<p />
+<ul>
+<li> The <a href="#Table_CrossCompile">$CROSS_COMPILE</a> environment variable
+     must <strong>NOT</strong> be set.
+</li>
+</ul>
+<p />
+<ul>
+<li> Do <strong>NOT</strong> use the <a href="#Table_CrossCompile">$CROSS_COMPILE</a> command prefix.
+</li>
+</ul>
+<p />
+<ul>
+<li> The <em>&lt;ELDK_root&gt;/usr/arm-linux/bin</em>
+      directory must <strong>NOT</strong> be in <code>PATH</code>. This is to make sure that the command
+     <code>gcc</code> causes invokation of the host
+     <code>gcc</code>, rather than the <A href="#Section_1.">ELDK</a> cross compiler.
+</li>
+</ul>
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.8.">1.8.  <A href="#Section_1.">ELDK</a> Packages</A></H1>
+<p />
+<H2><A name="Section_1.8.1.">1.8.1. List of ELDT Packages</A><A name="Section_ELDTPackages"> </A>
+</H2>
+<p />
+<table border="1" cellspacing="1" cellpadding="4">
+<tr><th align="left" bgcolor="#99CCCC"> Package Name </th><th align="left" bgcolor="#99CCCC"> Package Version </th></tr>
+<tr><td bgcolor="#FFFFFF"> crosstool </td><td bgcolor="#FFFFFF"> 0.35 </td></tr>
+<tr><td bgcolor="#FFFFCC"> gdb </td><td bgcolor="#FFFFCC"> 6.3.0.0-1.21_1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> genext2fs </td><td bgcolor="#FFFFFF"> 1.3-8 </td></tr>
+<tr><td bgcolor="#FFFFCC"> ldd </td><td bgcolor="#FFFFCC"> 0.1-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> make </td><td bgcolor="#FFFFFF"> 3.80-7_1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> make-doc </td><td bgcolor="#FFFFCC"> 3.80-7_1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> mkcramfs </td><td bgcolor="#FFFFFF"> 0.0.1-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> mkimage </td><td bgcolor="#FFFFCC"> 1.1.3-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> mtd_utils </td><td bgcolor="#FFFFFF"> 2-2 </td></tr>
+<tr><td bgcolor="#FFFFCC"> rpm </td><td bgcolor="#FFFFCC"> 4.4.1-21_1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> rpm-build </td><td bgcolor="#FFFFFF"> 4.4.1-21_1 </td></tr>
+</table>
+<p />
+<font color="#FF0000">Note:</font> Note: The <code><b>crosstool 0.35</b></code> ELDT package provides the following packages: <code><b>gcc 4.0.0</b></code>,
+<code><b>gcc-c++ 4.0.0</b></code>, <code><b>cpp 4.0.0</b></code> and <code><b>binutils 4.16.1</b></code>. For more information about
+the <code><b>crosstool</b></code> package please refer to <a href="http://kegel.com/crosstool" target="_top">http://kegel.com/crosstool</a>.
+<p />
+<H2><A name="Section_1.8.2.">1.8.2. List of Target Packages</A><A name="Section_ELDKTargetPackages"> </A>
+</H2>
+<p />
+      
+ <table border="1" cellspacing="1" cellpadding="4">
+<tr><th align="left" bgcolor="#99CCCC"> Package Name </th><th align="left" bgcolor="#99CCCC"> Package Version </th></tr>
+<tr><td bgcolor="#FFFFFF"> appWeb </td><td bgcolor="#FFFFFF"> 1.2.2-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> autoconf </td><td bgcolor="#FFFFCC"> 2.59-5 </td></tr>
+<tr><td bgcolor="#FFFFFF"> bash </td><td bgcolor="#FFFFFF"> 3.0-31 </td></tr>
+<tr><td bgcolor="#FFFFCC"> binutils </td><td bgcolor="#FFFFCC"> 2.16.1-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> boa </td><td bgcolor="#FFFFFF"> 0.94.14rc19-2 </td></tr>
+<tr><td bgcolor="#FFFFCC"> busybox </td><td bgcolor="#FFFFCC"> 1.00-4 </td></tr>
+<tr><td bgcolor="#FFFFFF"> byacc </td><td bgcolor="#FFFFFF"> 1.9-29 </td></tr>
+<tr><td bgcolor="#FFFFCC"> bzip2 </td><td bgcolor="#FFFFCC"> 1.0.2-16 </td></tr>
+<tr><td bgcolor="#FFFFFF"> bzip2-devel </td><td bgcolor="#FFFFFF"> 1.0.2-16 </td></tr>
+<tr><td bgcolor="#FFFFCC"> bzip2-libs </td><td bgcolor="#FFFFCC"> 1.0.2-16 </td></tr>
+<tr><td bgcolor="#FFFFFF"> coreutils </td><td bgcolor="#FFFFFF"> 5.2.1-48.1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> cpio </td><td bgcolor="#FFFFCC"> 2.6-7 </td></tr>
+<tr><td bgcolor="#FFFFFF"> cracklib </td><td bgcolor="#FFFFFF"> 2.8.2 </td></tr>
+<tr><td bgcolor="#FFFFCC"> cracklib-dicts </td><td bgcolor="#FFFFCC"> 2.8.2 </td></tr>
+<tr><td bgcolor="#FFFFFF"> crosstool </td><td bgcolor="#FFFFFF"> 0.35 </td></tr>
+<tr><td bgcolor="#FFFFCC"> db4 </td><td bgcolor="#FFFFCC"> 4.3.27-3 </td></tr>
+<tr><td bgcolor="#FFFFFF"> db4-devel </td><td bgcolor="#FFFFFF"> 4.3.27-3 </td></tr>
+<tr><td bgcolor="#FFFFCC"> db4-utils </td><td bgcolor="#FFFFCC"> 4.3.27-3 </td></tr>
+<tr><td bgcolor="#FFFFFF"> dhclient </td><td bgcolor="#FFFFFF"> 3.0.2-12 </td></tr>
+<tr><td bgcolor="#FFFFCC"> dhcp </td><td bgcolor="#FFFFCC"> 3.0.2-12 </td></tr>
+<tr><td bgcolor="#FFFFFF"> diffutils </td><td bgcolor="#FFFFFF"> 2.8.1-15 </td></tr>
+<tr><td bgcolor="#FFFFCC"> dosfstools </td><td bgcolor="#FFFFCC"> 2.10-3 </td></tr>
+<tr><td bgcolor="#FFFFFF"> dropbear </td><td bgcolor="#FFFFFF"> 0.43-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> e2fsprogs </td><td bgcolor="#FFFFCC"> 1.38-0.FC4.1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> e2fsprogs-devel </td><td bgcolor="#FFFFFF"> 1.38-0.FC4.1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> expat </td><td bgcolor="#FFFFCC"> 1.95.8-6 </td></tr>
+<tr><td bgcolor="#FFFFFF"> expat-devel </td><td bgcolor="#FFFFFF"> 1.95.8-6 </td></tr>
+<tr><td bgcolor="#FFFFCC"> file </td><td bgcolor="#FFFFCC"> 4.13-4 </td></tr>
+<tr><td bgcolor="#FFFFFF"> findutils </td><td bgcolor="#FFFFFF"> 4.2.20-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> flex </td><td bgcolor="#FFFFCC"> 2.5.4a-34 </td></tr>
+<tr><td bgcolor="#FFFFFF"> ftp </td><td bgcolor="#FFFFFF"> 0.17-26 </td></tr>
+<tr><td bgcolor="#FFFFCC"> gawk </td><td bgcolor="#FFFFCC"> 3.1.4-5 </td></tr>
+<tr><td bgcolor="#FFFFFF"> gcc </td><td bgcolor="#FFFFFF"> 4.0.0-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> gcc-c++ </td><td bgcolor="#FFFFCC"> 4.0.0-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> gdb </td><td bgcolor="#FFFFFF"> 6.3.0.0-1.21 </td></tr>
+<tr><td bgcolor="#FFFFCC"> glib </td><td bgcolor="#FFFFCC"> 1.2.10-16_1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> glib-devel </td><td bgcolor="#FFFFFF"> 1.2.10-16 </td></tr>
+<tr><td bgcolor="#FFFFCC"> glib2 </td><td bgcolor="#FFFFCC"> 2.6.6-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> glib2-devel </td><td bgcolor="#FFFFFF"> 2.6.4-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> grep </td><td bgcolor="#FFFFCC"> 2.5.1-48.2 </td></tr>
+<tr><td bgcolor="#FFFFFF"> groff </td><td bgcolor="#FFFFFF"> 1.18.1.1-5 </td></tr>
+<tr><td bgcolor="#FFFFCC"> gzip </td><td bgcolor="#FFFFCC"> 1.3.5-6 </td></tr>
+<tr><td bgcolor="#FFFFFF"> httpd </td><td bgcolor="#FFFFFF"> 2.0.54-10.2 </td></tr>
+<tr><td bgcolor="#FFFFCC"> httpd-devel </td><td bgcolor="#FFFFCC"> 2.0.54-10.2 </td></tr>
+<tr><td bgcolor="#FFFFFF"> httpd-manual </td><td bgcolor="#FFFFFF"> 2.0.54-10.2 </td></tr>
+<tr><td bgcolor="#FFFFCC"> initscripts </td><td bgcolor="#FFFFCC"> 8.11.1-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> iproute </td><td bgcolor="#FFFFFF"> 2.6.11-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> iputils </td><td bgcolor="#FFFFCC"> 20020927-22 </td></tr>
+<tr><td bgcolor="#FFFFFF"> kernel-headers </td><td bgcolor="#FFFFFF"> 2.6.14 </td></tr>
+<tr><td bgcolor="#FFFFCC"> kernel-source </td><td bgcolor="#FFFFCC"> 2.6.14 </td></tr>
+<tr><td bgcolor="#FFFFFF"> krb5-devel </td><td bgcolor="#FFFFFF"> 1.4.1-5 </td></tr>
+<tr><td bgcolor="#FFFFCC"> krb5-libs </td><td bgcolor="#FFFFCC"> 1.4.1-5 </td></tr>
+<tr><td bgcolor="#FFFFFF"> less </td><td bgcolor="#FFFFFF"> 382-7 </td></tr>
+<tr><td bgcolor="#FFFFCC"> libcap </td><td bgcolor="#FFFFCC"> 1.10-22 </td></tr>
+<tr><td bgcolor="#FFFFFF"> libcap-devel </td><td bgcolor="#FFFFFF"> 1.10-22 </td></tr>
+<tr><td bgcolor="#FFFFCC"> libtermcap </td><td bgcolor="#FFFFCC"> 2.0.8-41 </td></tr>
+<tr><td bgcolor="#FFFFFF"> libtermcap-devel </td><td bgcolor="#FFFFFF"> 2.0.8-41 </td></tr>
+<tr><td bgcolor="#FFFFCC"> libtool </td><td bgcolor="#FFFFCC"> 1.5.16.multilib2-2 </td></tr>
+<tr><td bgcolor="#FFFFFF"> libtool-ltdl </td><td bgcolor="#FFFFFF"> 1.5.16.multilib2-2 </td></tr>
+<tr><td bgcolor="#FFFFCC"> libuser </td><td bgcolor="#FFFFCC"> 0.53.7-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> libuser-devel </td><td bgcolor="#FFFFFF"> 0.53.7-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> logrotate </td><td bgcolor="#FFFFCC"> 3.7.1-10 </td></tr>
+<tr><td bgcolor="#FFFFFF"> lrzsz </td><td bgcolor="#FFFFFF"> 0.12.20-21 </td></tr>
+<tr><td bgcolor="#FFFFCC"> m4 </td><td bgcolor="#FFFFCC"> 1.4.3-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> mailcap </td><td bgcolor="#FFFFFF"> 2.1.19-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> make </td><td bgcolor="#FFFFCC"> 3.80-7 </td></tr>
+<tr><td bgcolor="#FFFFFF"> man </td><td bgcolor="#FFFFFF"> 1.5p-4 </td></tr>
+<tr><td bgcolor="#FFFFCC"> microwindows </td><td bgcolor="#FFFFCC"> 0.90-6 </td></tr>
+<tr><td bgcolor="#FFFFFF"> microwindows-fonts </td><td bgcolor="#FFFFFF"> 0.90-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> mingetty </td><td bgcolor="#FFFFCC"> 1.07-5 </td></tr>
+<tr><td bgcolor="#FFFFFF"> mktemp </td><td bgcolor="#FFFFFF"> 1.5-23 </td></tr>
+<tr><td bgcolor="#FFFFCC"> module-init-tools </td><td bgcolor="#FFFFCC"> 3.1-4 </td></tr>
+<tr><td bgcolor="#FFFFFF"> modutils </td><td bgcolor="#FFFFFF"> 2.4.22-8 </td></tr>
+<tr><td bgcolor="#FFFFCC"> modutils-devel </td><td bgcolor="#FFFFCC"> 2.4.22-8 </td></tr>
+<tr><td bgcolor="#FFFFFF"> mtd_utils </td><td bgcolor="#FFFFFF"> 1-3 </td></tr>
+<tr><td bgcolor="#FFFFCC"> ncompress </td><td bgcolor="#FFFFCC"> 4.2.4-42 </td></tr>
+<tr><td bgcolor="#FFFFFF"> ncurses </td><td bgcolor="#FFFFFF"> 5.4-17 </td></tr>
+<tr><td bgcolor="#FFFFCC"> ncurses-devel </td><td bgcolor="#FFFFCC"> 5.4-17 </td></tr>
+<tr><td bgcolor="#FFFFFF"> net-snmp </td><td bgcolor="#FFFFFF"> 5.2.1.2-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> net-snmp-devel </td><td bgcolor="#FFFFCC"> 5.2.1.2-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> net-snmp-utils </td><td bgcolor="#FFFFFF"> 5.2.1.2-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> net-tools </td><td bgcolor="#FFFFCC"> 1.60-52 </td></tr>
+<tr><td bgcolor="#FFFFFF"> nfs-utils </td><td bgcolor="#FFFFFF"> 1.0.7-12 </td></tr>
+<tr><td bgcolor="#FFFFCC"> ntp </td><td bgcolor="#FFFFCC"> 4.2.0.a.2004061-8 </td></tr>
+<tr><td bgcolor="#FFFFFF"> openssl </td><td bgcolor="#FFFFFF"> 0.9.7f-7.10 </td></tr>
+<tr><td bgcolor="#FFFFCC"> openssl-devel </td><td bgcolor="#FFFFCC"> 0.9.7f-7.10 </td></tr>
+<tr><td bgcolor="#FFFFFF"> pam </td><td bgcolor="#FFFFFF"> 0.79-9.5 </td></tr>
+<tr><td bgcolor="#FFFFCC"> pam-devel </td><td bgcolor="#FFFFCC"> 0.79-9.5 </td></tr>
+<tr><td bgcolor="#FFFFFF"> passwd </td><td bgcolor="#FFFFFF"> 0.69-3 </td></tr>
+<tr><td bgcolor="#FFFFCC"> patch </td><td bgcolor="#FFFFCC"> 2.5.4-24 </td></tr>
+<tr><td bgcolor="#FFFFFF"> pciutils </td><td bgcolor="#FFFFFF"> 2.1.99.test8-10 </td></tr>
+<tr><td bgcolor="#FFFFCC"> pciutils-devel </td><td bgcolor="#FFFFCC"> 2.1.99.test8-10 </td></tr>
+<tr><td bgcolor="#FFFFFF"> pcmcia-cs </td><td bgcolor="#FFFFFF"> 3.2.8-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> popt </td><td bgcolor="#FFFFCC"> 1.7-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> portmap </td><td bgcolor="#FFFFFF"> 4.0-65 </td></tr>
+<tr><td bgcolor="#FFFFCC"> procps </td><td bgcolor="#FFFFCC"> 3.2.5-6.3 </td></tr>
+<tr><td bgcolor="#FFFFFF"> psmisc </td><td bgcolor="#FFFFFF"> 21.5-5 </td></tr>
+<tr><td bgcolor="#FFFFCC"> rdate </td><td bgcolor="#FFFFCC"> 1.4-4 </td></tr>
+<tr><td bgcolor="#FFFFFF"> readline </td><td bgcolor="#FFFFFF"> 5.0-3 </td></tr>
+<tr><td bgcolor="#FFFFCC"> readline-devel </td><td bgcolor="#FFFFCC"> 5.0-3 </td></tr>
+<tr><td bgcolor="#FFFFFF"> routed </td><td bgcolor="#FFFFFF"> 0.17-12 </td></tr>
+<tr><td bgcolor="#FFFFCC"> rpm </td><td bgcolor="#FFFFCC"> 4.4.1-22 </td></tr>
+<tr><td bgcolor="#FFFFFF"> rpm-build </td><td bgcolor="#FFFFFF"> 4.4.1-22 </td></tr>
+<tr><td bgcolor="#FFFFCC"> rpm-devel </td><td bgcolor="#FFFFCC"> 4.4.1-22 </td></tr>
+<tr><td bgcolor="#FFFFFF"> rsh </td><td bgcolor="#FFFFFF"> 0.17-29 </td></tr>
+<tr><td bgcolor="#FFFFCC"> rsh-server </td><td bgcolor="#FFFFCC"> 0.17-29 </td></tr>
+<tr><td bgcolor="#FFFFFF"> sed </td><td bgcolor="#FFFFFF"> 4.1.4-1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> SELF </td><td bgcolor="#FFFFCC"> 1.0-7 </td></tr>
+<tr><td bgcolor="#FFFFFF"> setup </td><td bgcolor="#FFFFFF"> 2.5.44-1.1 </td></tr>
+<tr><td bgcolor="#FFFFCC"> slang </td><td bgcolor="#FFFFCC"> 1.4.9-17 </td></tr>
+<tr><td bgcolor="#FFFFFF"> slang-devel </td><td bgcolor="#FFFFFF"> 1.4.9-17 </td></tr>
+<tr><td bgcolor="#FFFFCC"> strace </td><td bgcolor="#FFFFCC"> 4.5.11-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> sysklogd </td><td bgcolor="#FFFFFF"> 1.4.1-30 </td></tr>
+<tr><td bgcolor="#FFFFCC"> SysVinit </td><td bgcolor="#FFFFCC"> 2.85-39 </td></tr>
+<tr><td bgcolor="#FFFFFF"> tar </td><td bgcolor="#FFFFFF"> 1.15.1-10 </td></tr>
+<tr><td bgcolor="#FFFFCC"> tcp_wrappers </td><td bgcolor="#FFFFCC"> 7.6-39 </td></tr>
+<tr><td bgcolor="#FFFFFF"> telnet </td><td bgcolor="#FFFFFF"> 0.17-35 </td></tr>
+<tr><td bgcolor="#FFFFCC"> telnet-server </td><td bgcolor="#FFFFCC"> 0.17-35 </td></tr>
+<tr><td bgcolor="#FFFFFF"> termcap </td><td bgcolor="#FFFFFF"> 5.4-7 </td></tr>
+<tr><td bgcolor="#FFFFCC"> tftp </td><td bgcolor="#FFFFCC"> 0.40-6 </td></tr>
+<tr><td bgcolor="#FFFFFF"> tftp-server </td><td bgcolor="#FFFFFF"> 0.40-6 </td></tr>
+<tr><td bgcolor="#FFFFCC"> u-boot </td><td bgcolor="#FFFFCC"> 1.1.4-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> util-linux </td><td bgcolor="#FFFFFF"> 2.12p-9.12 </td></tr>
+<tr><td bgcolor="#FFFFCC"> vim-common </td><td bgcolor="#FFFFCC"> 6.3.086-0 </td></tr>
+<tr><td bgcolor="#FFFFFF"> vim-minimal </td><td bgcolor="#FFFFFF"> 6.3.086-0 </td></tr>
+<tr><td bgcolor="#FFFFCC"> wireless-tools </td><td bgcolor="#FFFFCC"> 28-1 </td></tr>
+<tr><td bgcolor="#FFFFFF"> wu-ftpd </td><td bgcolor="#FFFFFF"> 2.6.1-2 </td></tr>
+<tr><td bgcolor="#FFFFCC"> xinetd </td><td bgcolor="#FFFFCC"> 2.3.13-6 </td></tr>
+<tr><td bgcolor="#FFFFFF"> zlib </td><td bgcolor="#FFFFFF"> 1.2.2.2-3 </td></tr>
+<tr><td bgcolor="#FFFFCC"> zlib-devel </td><td bgcolor="#FFFFCC"> 1.2.2.2-3 </td></tr>
+</table>
+<p />
+<font color="#FF0000">Note 1:</font> Not all packages will be installed automatically; for example the
+<code><b>boa</b></code> and <code><b>thttpd</b></code> web servers are
+mutually exclusive - you will have to remove one package before you
+can (manually) install the other one.
+<p />
+<font color="#FF0000">Note 2:</font> The <code><b>crosstool 0.35</b></code> target package provides the following packages: <code><b>glibc 2.3.5</b></code>, <code><b>glibc-common 2.3.5</b></code>, <code><b>glibc-devel 2.3.5</b></code>, <code><b>libstdc++ 4.0.0</b></code>
+and <code><b>libstdc++-devel 4.0.0</b></code>.
+For more information about the <code><b>crosstool</b></code> package please refer to
+<a href="http://kegel.com/crosstool" target="_top">http://kegel.com/crosstool</a>
+<a name="PageBottom"></a><a name="PageTop"></a>
+<H1><A name="Section_1.9.">1.9.  Rebuilding the <A href="#Section_1.">ELDK</a> from Scratch</A></H1>
+<p />
+<a name="EldkRebuildFromScratch"></a> In this section, you
+will find instructions on how to build the <A href="#Section_1.">ELDK</a>
+from scratch, using the pristine package sources available on the
+Internet, and patches, spec files, and build scripts provided on the
+<A href="#Section_1.">ELDK</a> source CD-ROM.
+<p />
+<H2><A name="Section_1.9.1.">1.9.1. <A href="#Section_1.">ELDK</a> Build Process Overview</A><A name="Section_ELDKBuildOverview"> </A>
+</H2>
+<p />
+<a name="BuildOverview"></a> The <A href="#Section_1.">ELDK</a> uses
+Fedora Core 4 Linux distribution as a source code
+reference. Any modifications to Fedora Core's sources the <A href="#Section_1.">ELDK</a> has
+introduced are in the form of patches applied by the RPM tool while
+building the packages. Also, the <A href="#Section_1.">ELDK</a> uses modified spec files for
+its RPM packages. So, the sources of almost every <A href="#Section_1.">ELDK</a> package
+consist of the following parts:
+<p />
+<ul>
+<li> Fedora Core pristine sources <strong>or</strong>
+</li>
+<li> <A href="#Section_1.">ELDK</a> source tarball,
+</li>
+<li> <A href="#Section_1.">ELDK</a> patches,
+</li>
+<li> <A href="#Section_1.">ELDK</a> spec file.
+</li>
+</ul>
+<p />
+The Fedora Core pristine sources may be obtained from the Internet, see
+<a href="http://download.fedora.redhat.com/pub/fedora/linux/core" target="_top">http://download.fedora.redhat.com/pub/fedora/linux/core</a>.
+<p />
+The <A href="#Section_1.">ELDK</a> patches and spec files are available on the <A href="#Section_1.">ELDK</a> source
+CD-ROM and from the DENX anonymous CVS server. To access this CVS server
+please use the following command to log on:
+<pre>
+cvs -d :pserver:anonymous@www.denx.de:/cvsroot login
+</pre>
+When prompted for the "CVS password:" just press the return key (empty password).
+<p />
+Please use the following commands to check out a copy of one of the modules: 
+<pre>
+cvs -z6 -d :pserver:anonymous@www.denx.de:/cvsroot co -r</i>version</i> -P <i>module</i>
+</pre>
+The following <A href="#Section_1.">ELDK</a> modules are available:
+<p />
+<table border="1" cellspacing="1" cellpadding="4">
+<tr><th align="left" bgcolor="#99CCCC"> Module Name </th><th align="left" bgcolor="#99CCCC"> Contents </th></tr>
+<tr><td bgcolor="#FFFFFF"> eldk_tarballs </td><td bgcolor="#FFFFFF"> Source tarballs </td></tr>
+<tr><td bgcolor="#FFFFFF"> eldk_build </td><td bgcolor="#FFFFFF"> Build tools, patches, and spec files </td></tr>
+</table>
+<p />
+Using the "-r</i>version</i>" option makes sure you download exactly the files
+that belong to a specific release of the <A href="#Section_1.">ELDK</a>; for example, to get the files for
+<A href="#Section_1.">ELDK</a> release 4.0, please specify <code>"<b>-rELDK_4_0</b>"</code> .
+<p />
+It must be noted that some of the packages which are included in the
+<A href="#Section_1.">ELDK</a> are not included in Fedora Core. Examples of such packages are
+<code>appWeb</code>, <code>microwindows</code>, and <code>wu-ftpd</code>. For these
+packages tarballs are provided on the DENX anonymous CVS server.
+<p />
+To facilitate building of the <A href="#Section_1.">ELDK</a>, a build infrastructure has been
+developed. The infrastructure is composed of the following components:
+<p />
+<ul>
+<li> <code>ELDK_BUILD</code> script
+</li>
+<li> <code>build.sh</code> script
+</li>
+<li> <code>cpkgs.lst</code> file
+</li>
+<li> <code>tpkgs.lst</code> file
+</li>
+<li> <code>SRPMS.lst</code> file
+</li>
+<li> <code>tarballs.lst</code> file
+</li>
+</ul>
+<p />
+The <code>ELDK_BUILD</code> script is the main script of the
+<A href="#Section_1.">ELDK</a> build procedure. It is the tool that you would normally use to
+build the <A href="#Section_1.">ELDK</a> from scratch. In the simplest case, the script may be
+invoked without arguments, and it will perform all necessary steps to
+build the <A href="#Section_1.">ELDK</a> in a fully automated way. You may pass two optional
+arguments to the <code>ELDK_BUILD</code> script:
+<p />
+<table border="0" cellspacing="5" cellpadding="0">
+<tr><td bgcolor="#FFFFFF"> <code>-d &lt;arch&gt;</code> </td><td bgcolor="#FFFFFF"> target architecture: "ppc", "arm" or "mips", defaults to "ppc". </td></tr>
+<tr><td bgcolor="#FFFFFF"> <code>-n &lt;build_name&gt;</code> </td><td bgcolor="#FFFFFF"> an identification string for the build. Defaults to the value based on the build architecture and current date, and has the following format: <em>&lt;arch&gt;-YYYY-MM-DD</em> </td></tr>
+</table>
+<p />
+<font color="#FF0000">Warning:</font> The <A href="#Section_1.">ELDK</a> build scripts rely on standard behaviour of the RPM tool.
+Make sure you don't use non-standard settings in your personal <code>~/.rpmmacros</code> file that
+might cause conflicts.
+<p />
+<code>build.sh</code> is a supplementary script that is called
+by <code>ELDK_BUILD</code> to accomplish certain steps of the
+build. Refer to section <A href="#Section_1.9.3.">1.9.3. build.sh Usage</A> below for more
+details.
+<p />
+The <em>cpkgs.lst</em> and <em>tpkgs.lst</em>
+files are read by <code>build.sh</code> and must contain lines
+describing sub-steps of the <em>eldt</em> and
+<em>trg</em> build procedure steps. Essentially, the
+files contain the list of the ELDT and target packages to be included
+in the <A href="#Section_1.">ELDK</a>. The <em>SRPMS.lst</em> file contains the
+list of the Fedora Core source RPM packages used during the <A href="#Section_1.">ELDK</a> build.
+The <em>tarballs.lst</em> file contains the list of
+source tarballs of the packages that are included in the <A href="#Section_1.">ELDK</a> but are
+not present in Fedora Core 4.
+<p />
+For the <code>ELDK_BUILD</code> script to work correctly, it
+must be invoked from a certain build environment created on the host
+system. The build environment can be either checked out from the DENX
+CVS (see section <A href="#Section_1.9.2.">1.9.2. Setting Up <A href="#Section_1.">ELDK</a> Build Environment</A> below for details) or copied
+from the <A href="#Section_1.">ELDK</a> build environment CD-ROM.
+<p />
+To be more specific, the following diagram outlines the build
+environment needed for correct operation of the
+<code>ELDK_BUILD</code> script:
+<p />
+<pre>
+&lt;some_directory&gt;/
+                 build/cross_rpms/&lt;package_name&gt;/SPECS/...
+                                                 SOURCES/...
+                       target_rpms/&lt;package_name&gt;/SPECS/...
+                                                  SOURCES/...
+                       install/install.c
+                               Makefile
+                       misc/ELDK_MAKEDEV
+                            ELDK_FIXOWNER
+                            README.html
+                       cpkgs.lst
+                       tpkgs.lst
+                       build.sh
+                                                                                
+                       ELDK_BUILD
+                                                                                
+                       SRPMS.lst
+                                                                                
+                       tarballs.lst
+
+                 tarballs/....
+                                                                                
+                 SRPMS/....
+</pre>
+<p />
+In subdirectories of the <em>cross_rpms</em> and <em>target_rpms</em>
+directories, the sources and RPM spec files of,
+respectively, the ELDT and target packages are
+stored. The <em>install</em>
+subdirectory contains the sources of the installation utility which
+will be built and placed in the root of the ISO image.
+<em>tarballs</em> directory contains the source
+tarballs of the packages that are included in the <A href="#Section_1.">ELDK</a> but are not
+present in Fedora Core 4.
+<p />
+The SRPMS directory may contain the source RPM packages of Fedora Core
+4. If some (or all) of the Fedora Core SRPMs needed for the build are
+missing in the directory, the <code>ELDK_BUILD</code> script
+will download the source RPMs automatically from the Internet.
+<p />
+The <A href="#Section_1.">ELDK</a> build environment CD-ROM provides a ready-to-use <A href="#Section_1.">ELDK</a> build
+environment. Please refer to section
+<A href="#Section_1.9.2.">1.9.2. Setting Up <A href="#Section_1.">ELDK</a> Build Environment</A>
+below for detailed instructions on setting up the build environment.
+<p />
+The <code>ELDK_BUILD</code> script examines the contents of the
+<code>ELDK_PREFIX</code> environment variable to determine the
+root directory of the <A href="#Section_1.">ELDK</a> build environment. If the variable is not
+set when the script is invoked, it is assumed that the root directory
+of the <A href="#Section_1.">ELDK</a> build environment is <em>/opt/eldk</em>. To build the <A href="#Section_1.">ELDK</a> in the
+example directory layout given above, you must set and export the
+<code>ELDK_PREFIX</code> variable <em>&lt;some_directory&gt;</em> prior to invoking
+<code>ELDK_BUILD</code>.
+<p />
+After all the build steps are complete, the following subdirectories
+are created in the <A href="#Section_1.">ELDK</a> build environment:
+<p />
+<pre>
+build/&lt;build_name&gt;/work/             - full ELDK environment
+build/&lt;build_name&gt;/logs/             - build procedure log files
+build/&lt;build_name&gt;/results/b_cdrom/  - binary cdrom tree, ready for mkisofs
+                   results/s_cdrom/  - source cdrom tree, ready for mkisofs
+</pre>
+<p />
+On Linux hosts, the binary and source ISO images are created
+automatically by the <code>ELDK_BUILD</code> script and placed
+in the <em>results</em> directory. On
+Solaris hosts, creating the ISO images is a manual step. Use the
+contents of the <em>b_cdrom</em> and
+<em>s_cdrom</em> directories for the
+contents of the ISO images.
+<p />
+<a name="BuildSetup"></a>                                                                               
+<H2><A name="Section_1.9.2.">1.9.2. Setting Up <A href="#Section_1.">ELDK</a> Build Environment</A><A name="Section_ELDKBuildSetup"> </A>
+</H2>
+<p />
+For your convenience,
+the <A href="#Section_1.">ELDK</a> build environment CD-ROM provides full
+<A href="#Section_1.">ELDK</a> build environment. All you need to do is copy the contents of
+the CD-ROM to an empty directory on your host system. Assuming the
+<A href="#Section_1.">ELDK</a> build environment CD-ROM is mounted at <em>/mnt/cdrom</em>,
+and the empty directory
+where you want to create the build environment is named
+<em>/opt/eldk</em>, use the following
+commands to create the build environment:
+<p />
+<pre>
+bash$ cd /opt/eldk
+bash$ cp -r /mnt/cdrom/* .
+</pre>
+<p />
+These commands will create the directory structure as described in
+section <A href="#Section_1.9.1.">1.9.1. <A href="#Section_1.">ELDK</a> Build Process Overview</A> above.
+All necessary scripts and <A href="#Section_1.">ELDK</a> specific source files will be placed in the
+<em>build</em> subdirectory, and the required
+tarballs can be found in the
+<em>tarballs</em> subdirectory. In the
+<em>SRPMS</em> subdirectory, you will find all
+the Fedora Core 4 SRPMS needed to build the <A href="#Section_1.">ELDK</a>.
+<p />
+Alternatively, you can obtain the <A href="#Section_1.">ELDK</a> build environment from the
+DENX anonymous CVS server. Two modules are provided for check out:
+<em>eldk_build</em> and
+<em>eldk_tarballs</em>. The first one contains the files
+for the <em>build</em> subdirectory in
+the build environment, and the second one contains source tarballs of
+the packages that are included in the <A href="#Section_1.">ELDK</a> but are not present in
+Fedora Core 4. To create the <A href="#Section_1.">ELDK</a> build environment from the DENX CVS
+server, use the following commands (the example below assumes that
+the root directory of the build environment is
+<em>/opt/eldk</em>):
+<p />
+<pre>
+bash$ cd /opt/eldk
+bash$ cvs -d :pserver:anonymous@www.denx.de:/cvsroot login
+bash$ cvs -z6 -d :pserver:anonymous@www.denx.de:/cvsroot co -P eldk_build
+bash$ cvs -z6 -d :pserver:anonymous@www.denx.de:/cvsroot co -P eldk_tarballs
+</pre>
+<p />
+After the <em>eldk_build</em> and
+<em>eldk_tarballs</em> modules have been checked out, the
+only remaining piece that is needed for the build is the Fedora Core 4
+source RPM packages, which will, if required, be automatically
+downloaded by the <code>ELDK_BUILD</code> script.
+<p />
+<a name="BuildScript"></a>                                                                              
+<H2><A name="Section_1.9.3.">1.9.3. build.sh Usage</A><A name="Section_ELDKBuildScript"> </A>
+</H2>
+If you wish
+to perform only a part of the <A href="#Section_1.">ELDK</a> build procedure, for
+instance to re-build or update a certain package, it may sometimes be
+convenient to invoke the <code>build.sh</code> script manually,
+without the aid of the <code>ELDK_BUILD</code> script. Please
+note, however, that this approach is in general discouraged.
+<p />
+The whole build procedure is logically divided into six steps, and
+the <code>build.sh</code> must be told which of the build steps
+to perform. The build steps are defined as follows:
+<p />
+<ul>
+<li> <em>rpm</em> - build RPM
+</li>
+<li> <em>eldt</em> - build ELDT packages
+</li>
+<li> <em>seldt</em> - save ELDT SRPM packages to create a source ISO image later on
+</li>
+<li> <em>trg</em> - build target packages
+</li>
+<li> <em>biso</em> - prepare the file tree to create the binary ISO image
+</li>
+<li> <em>siso</em> - prepare the file tree to create the source ISO image
+</li>
+</ul>
+<p />
+Further, the <em>eldt</em> and <em>trg</em>
+build steps are devided into sub-steps, as defined in the
+<em>cpkgs.lst</em> and <em>tpkgs.lst</em>
+<p />
+files (see below for details). You may specify which sub-steps of the
+build step are to be performed.
+<p />
+The formal syntax for the usage of <code>build.sh</code> is as follows:
+<p />
+<pre>
+bash$ ./build.sh [-a &lt;arch&gt;] [-n &lt;name&gt;] [-p &lt;prefix&gt;] [-r &lt;result&gt;] \
+                 [-w &lt;work&gt;] &lt;step_name&gt; [&lt;sub_step_number&gt;]
+</pre>
+<p />
+<table border="0" cellspacing="5" cellpadding="0">
+<tr><td valign="top" bgcolor="#FFFFFF"> <code>-a &lt;arch&gt;</code> </td><td valign="top" bgcolor="#FFFFFF"> target architecture: "ppc", "arm" or "mips", defaults to "ppc". </td></tr>
+<tr><td valign="top" bgcolor="#FFFFFF"> <code>-n &lt;build_name&gt;</code> </td><td valign="top" bgcolor="#FFFFFF"> an identification string for the build. It is used as a name for some directories created during the build. You may use for example the current date as the build name. </td></tr>
+<tr><td valign="top" bgcolor="#FFFFFF"> <code>-p &lt;prefix&gt;</code> </td><td valign="top" bgcolor="#FFFFFF"> is the name of the directory that contains the build environment. Refer to <a href="#BuildOverview">build overview</a> above for description of the build environment. </td></tr>
+<tr><td valign="top" bgcolor="#FFFFFF"> <code>-r &lt;result&gt;</code> </td><td valign="top" bgcolor="#FFFFFF"> is the name of the directory where the resulting RPMs and SRPMs created on this step will be placed. </td></tr>
+<tr><td valign="top" bgcolor="#FFFFFF"> <code>-w &lt;work&gt;</code> </td><td valign="top" bgcolor="#FFFFFF"> is the name of the directory where the build is performed. </td></tr>
+<tr><td valign="top" bgcolor="#FFFFFF"> <code>&lt;stepname&gt;</code> </td><td valign="top" bgcolor="#FFFFFF"> is the name of the build step that is to be performed. Refer to the list of the build procedure steps above. </td></tr>
+<tr><td valign="top" bgcolor="#FFFFFF"> <code>&lt;sub_step_number&gt;</code> </td><td valign="top" bgcolor="#FFFFFF"> is an optional parameter which identifies sub-steps of the step which are to be performed. This is useful when you want to re-build only some specific packages. The numbers are defined in the <em>cpkgs.lst</em> and <em>tpkgs.lst</em> files discussed below. You can specify a range of numbers here. For instance, "2 5" means do steps from 2 to 5, while simply "2" means do all steps starting at 2. </td></tr>
+</table>
+<p />
+<font color="#FF0000">Note:</font> Please note that you must never use <code>build.sh</code> to
+build the <A href="#Section_1.">ELDK</a> from scratch. For <code>build.sh</code> to work
+correctly, the script must be invoked from the build environment
+after a successful build using the <code>ELDK_BUILD</code>
+script. A possible scenario of <code>build.sh</code> usage is
+such that you have a build environment with results of a build
+performed using the <code>ELDK_BUILD</code> script and want to
+re-build certain ELDT and target packages, for instance, because you
+have updated sources of a package or added a new package to the
+build.
+<p />
+When building the target packages (during the
+<em>trg</em> buildstep), <code>build.sh</code>
+examines the contents of the
+<code>TARGET_CPU_FAMILY_LIST</code> environment variable, which
+may contain a list indicating which target CPU variants the packages
+must be built for.
+Possible CPU variants are <em>920TDI</em>. 
+For example, the command below rebuilds
+the target RPM listed in the <em>tpckgs.lst</em> file
+under the number of 47 (see section <A href="#Section_1.9.4.">1.9.4. Format of the cpkgs.lst and  tpkgs.lst Files</A> for
+description of the <em>tpckgs.lst</em> and
+<em>cpkgs.lst</em> files), for the <em>arm</em> CPU: 
+<p />
+<pre>
+bash$ TARGET_CPU_FAMILY_LIST="920TDI" \
+&gt; /opt/eldk/build.sh -a arm \
+&gt;                    -n 2004-11-11 \
+&gt;                    -p /opt/eldk/build/arm-2004-11-11 \
+&gt;                    -r /opt/eldk/build/arm-2004-11-11/results \
+&gt;                    -w /opt/eldk/build/arm-2004-11-11/work \
+&gt;                    trg 47 47
+</pre>
+<p />
+<p />
+<font color="#0000ff">Note:</font> If you are going to invoke <code>build.sh</code> to re-build a
+package that has already been built in the build environment by the
+<code>ELDK_BUILD</code> script, then you must first manually
+uninstall the package from <A href="#Section_1.">ELDK</a> installation created by the build
+procedure under the <em>work</em>
+directory of the build environment.
+<p />
+<font color="#0000ff">Note:</font> It is recommended that you use the <code>build.sh</code> script
+only at the final stage of adding/updating a package to the <A href="#Section_1.">ELDK</a>. For
+debugging purposes, it is much more convenient and efficient to build
+both ELDT and target packages using a working <A href="#Section_1.">ELDK</a> installation, as
+described in the sections <A href="#Section_1.7.2.">1.7.2. Rebuilding Target Packages</A>
+and <A href="#Section_1.7.3.">1.7.3. Rebuilding ELDT Packages</A> above.
+<p />
+<a name="BuildFiles"></a>                                                                                
+<H2><A name="Section_1.9.4.">1.9.4. Format of the cpkgs.lst and  tpkgs.lst Files</A><A name="Section_ELDKBuildFiles"> </A>
+</H2>
+<p />
+Each line of these files has the following format:
+<p />
+<pre>
+&lt;sub_step_number&gt; &lt;package_name&gt; &lt;spec_file_name&gt; \
+  &lt;binary_package_name&gt; &lt;package_version&gt;
+</pre>
+<p />
+The <A href="#Section_1.">ELDK</a> source CD-ROM contains the <em>cpkgs.lst</em>
+and <em>tpkgs.lst</em> files used to build this version
+of the <A href="#Section_1.">ELDK</a> distribution. Use them as reference if you want to
+include any additional packages into the <A href="#Section_1.">ELDK</a>, or remove unneeded
+packages.
+<p />
+To add a package to the <A href="#Section_1.">ELDK</a> you must add a line to either the
+<em>cpkgs.lst</em> file, if you are adding a ELDT
+package, or to the <em>tpkgs.lst</em> file, if it is a
+target package. Keep in mind that the relative positions of packages
+in the <em>cpkgs.lst</em> and
+<em>tpkgs.lst</em> files (the sub-step numbers) are very
+important. The build procedure builds the packages sequentially as
+defined in the <em>*.lst</em> files and installs the
+packages in the "work" environment as they are built. This
+implies that if a package depends on other packages, those packages
+must be specified earlier (with smaller sub-step numbers) in the
+<em>*.lst</em> files.
+<p />
+<font color="#0000ff">Note:</font> For <em>cpkgs.lst</em>, the <em>package_version</em> may be replaced
+by the special keyword "RHAUX". Such packages are used as auxiliary when building
+<A href="#Section_1.">ELDK</a> 4.0 on non-Fedora hosts. These packages will be built and used during the
+build process, but will not be put into the <A href="#Section_1.">ELDK</a> 4.0 distribution ISO images.
+<a name="PageBottom"></a>
+</body>
+</html>

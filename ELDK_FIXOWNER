@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# Local function:
+#   attr (mode, user, group, target file or directory)
+# Do a 'chown user:group' and 'chmod mode' on the target file or directory.
+# If a user or group does not exist on the host, the ownership will be set
+# to root:root and possible 's'-bits in the mode will be skipped.
+# 'Mode' argument is a numeric octal or '-' to define the recursive 'chown'.
+# operation. In latter case the 'chmod' is not executed.
+#
+# For compatibility with other OS (FreeBSD to name one) we use numeric
+# UID/GID (i. e. "chown 0:0 ..." instead of "chown root:root ...").
+
+attr() {
+ local mode=$1
+ local user=$2 
+ local group=$3
+ local dst=$4
+ local len
+ local pos
+ local dir
+
+ id $user>&/dev/null
+ has_user=$?
+ grep $group /etc/group>&/dev/null
+ has_grp=$?
+
+ if [ $mode = "-" ]; then
+  do_R="-R"
+ else
+  do_R=""
+ fi
+
+ if [ $has_user -ne 0 -o $has_grp -ne 0 ]; then
+  # Cut off the possible 's'-bits, i.e 2755 -> 755
+  len=`expr length $mode`
+  pos=`expr $len - 2`
+  mode=`expr substr $mode $pos $len`
+  echo "User '$user' or group '$group' does not exist. Will setup the $dst as $mode uid 0, gid 0"
+  user=0
+  group=0
+ fi
+
+ target_dirlist='ppc_* arm_* mips_*'
+ for dir in $target_dirlist
+ do
+  dst=$dir/$4
+
+  if [ ! -e $dst ]; then
+   continue
+  fi
+
+#  echo "chown $do_R $user:$group $dst"
+  chown $do_R $user:$group $dst
+  if [ x$do_R = "x" ]; then
+#   echo "chmod $mode $dst"
+   chmod $mode $dst
+  fi
+done
+}
+
+
+
+# Main
+
+if [ `id -u` -ne 0 ]; then
+ echo "Should be executed as root!"
+ exit
+fi
+
+find . -perm -u=s -exec chown 0:0 {} \;
+
+attr 2755  httpd  httpd  usr/sbin/makeweb
+attr -     httpd  httpd  home/httpd
